@@ -13,7 +13,7 @@ products.forEach((v) => {
   }
   productsByCategory[v.category].data.push(v);
 });
-console.log(typeof productsByCategory);
+
 const sections = Object.values(productsByCategory);
 const Market = () => {
   return (
@@ -27,7 +27,7 @@ const Market = () => {
             <FlatList
               horizontal
               data={section.data}
-              keyExtractor={(item, i) => i.toString()}
+              keyExtractor={(item) => item.id.toString()}
               renderItem={(item) => (
                 <Text>123</Text>
               )}
@@ -45,18 +45,6 @@ const Market = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center"
-  },
-  text: {
-    color: "white",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000c0"
   },
   sectionHeader: {
 
