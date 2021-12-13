@@ -19,7 +19,7 @@ const Market = () => {
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
-        contentContainerStyle={{ paddingHorizontal: 10 }}
+        // contentContainerStyle={{ paddingHorizontal: 10 }}
         sections={sections}
         renderSectionHeader={({ section }) => (
           <>
@@ -28,8 +28,8 @@ const Market = () => {
               horizontal
               data={section.data}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={(item) => (
-                <Text>123</Text>
+              renderItem={({item}) => (
+                <Product data={item} />
               )}
             />
           </>
