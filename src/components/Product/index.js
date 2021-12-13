@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, ImageBackground, StyleSheet, View, Text } from "react-native";
+import { Dimensions, Image, ImageBackground, StyleSheet, View, Text } from "react-native";
 
 // Get window box for Flat list height
 const { height, width } = Dimensions.get('window');
@@ -13,25 +13,32 @@ const calculatePrice = (data) => {
   } else {
     ret = data.price;
   }
-  return formatPrice(ret)
+  return formatPrice(ret);
 };
 const formatPrice = (numPrice) => {
   if (numPrice === 0) {
-    return 'Free'
+    return 'Free';
   }
   const s = numPrice.toString();
-  return '\u00A3' + s.substring(0,s.length-2) + '.' + s.substring(s.length-2)
+  return '\u00A3' + s.substring(0, s.length - 2) + '.' + s.substring(s.length - 2);
 };
 const Product = ({ data }) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={{ uri: data.image }} resizeMode="cover" style={styles.imageView}>
         <View style={styles.info}>
-          <Text style={styles.titlePrice}>{data.name}</Text>
-          <Text style={styles.titlePrice}>
-            {calculatePrice(data)}
-          </Text>
-          <Text style={styles.short_desc}>{data.short_description}</Text>
+          <View style={{ flexBasis: '80%' }}>
+            <Text style={styles.titlePrice}>{data.name}</Text>
+            <Text style={styles.titlePrice}>
+              {calculatePrice(data)}
+            </Text>
+          </View>
+          <View style={{ flexBasis: '15%', justifyContent: 'center', overflow: 'hidden' }}>
+            <Image source={{ uri: 'https://picsum.photos/id/1010/100/100' }} style={{ width: '100%', height: undefined, aspectRatio: 1, borderRadius: 300 }} />
+          </View>
+          <View style={{ flexBasis: '100%' }}>
+            <Text style={styles.short_desc}>{data.short_description}</Text>
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -55,6 +62,9 @@ const styles = StyleSheet.create({
   info: {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     padding: 6,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
   },
   titlePrice: {
     color: 'white',
