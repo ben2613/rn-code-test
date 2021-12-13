@@ -2,10 +2,10 @@ import React from 'react';
 
 import { ImageBackground, StyleSheet, View } from "react-native";
 
-const Product = (props) => {
+const Product = ({data}) => {
   return (
     <View style={styles.container}>
-      <ImageBackground source={{ uri: props.image }} resizeMode="cover" style={styles.image}>
+      <ImageBackground source={{ uri: data.image }} resizeMode="cover" style={styles.image}>
 
       </ImageBackground>
     </View>
@@ -18,7 +18,10 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
+    aspectRatio: 4/3,
+    height: 100,
+    width: null,
   },
   text: {
     color: "white",

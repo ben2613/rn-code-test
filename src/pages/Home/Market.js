@@ -28,8 +28,8 @@ const Market = () => {
               horizontal
               data={section.data}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={(item) => (
-                <Text>123</Text>
+              renderItem={({item}) => (
+                <Product data={item} />
               )}
             />
           </>
