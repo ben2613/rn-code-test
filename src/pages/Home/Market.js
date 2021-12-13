@@ -19,7 +19,7 @@ const Market = () => {
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
-        contentContainerStyle={{ paddingHorizontal: 10 }}
+        // contentContainerStyle={{ paddingHorizontal: 10 }}
         sections={sections}
         renderSectionHeader={({ section }) => (
           <>
