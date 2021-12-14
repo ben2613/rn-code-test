@@ -1,5 +1,5 @@
-import React from 'react';
-import { Dimensions, Image, ImageBackground, StyleSheet, View, Text } from "react-native";
+import React, {useRef} from 'react';
+import { Animated, Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 // Get window box for Flat list height
 const { height } = Dimensions.get('window');
@@ -23,31 +23,37 @@ const formatPrice = (numPrice) => {
   const s = numPrice.toString();
   return '\u00A3' + s.substring(0, s.length - 2) + '.' + s.substring(s.length - 2);
 };
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+const scaleAnim = new Animated.Value(1);
+
 const Product = ({ data }) => {
   return (
-    <View style={styles.container}>
-      <ImageBackground style={styles.imageView} source={{ uri: data.image }} resizeMode="cover">
-        <View style={styles.infoOverlay}>
-          <View style={{ flexBasis: '80%' }}>
-            <Text style={styles.titlePrice}>
-              {data.name}
-            </Text>
-            <Text style={styles.titlePrice}>
-              {calculatePrice(data)}
-            </Text>
+    <AnimatedTouchable style={{ transform: [{scale: scaleAnim}] }} activeOpacity={0.75}>
+      <View style={styles.container}>
+        <ImageBackground style={styles.imageView} source={{ uri: data.image }} resizeMode="cover">
+          <View style={styles.infoOverlay}>
+            <View style={{ flexBasis: '80%' }}>
+              <Text style={styles.titlePrice}>
+                {data.name}
+              </Text>
+              <Text style={styles.titlePrice}>
+                {calculatePrice(data)}
+              </Text>
+            </View>
+            <View style={{ alignSelf:'flex-start', flexBasis: '15%', justifyContent: 'center', padding: 6}}>
+              <Image
+                style={{ width: '100%', height: undefined, aspectRatio: 1, borderRadius: 300 }}
+                source={{ uri: avatar_uri }}
+              />
+            </View>
+            <View style={{ flexBasis: '100%' }}>
+              <Text style={styles.short_desc}>{data.short_description}</Text>
+            </View>
           </View>
-          <View style={{ alignSelf:'flex-start', flexBasis: '15%', justifyContent: 'center', padding: 6}}>
-            <Image
-              style={{ width: '100%', height: undefined, aspectRatio: 1, borderRadius: 300 }}
-              source={{ uri: avatar_uri }}
-            />
-          </View>
-          <View style={{ flexBasis: '100%' }}>
-            <Text style={styles.short_desc}>{data.short_description}</Text>
-          </View>
-        </View>
-      </ImageBackground>
-    </View>
+        </ImageBackground>
+      </View>
+    </AnimatedTouchable>
   );
 };
 
