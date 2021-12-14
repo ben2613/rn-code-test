@@ -23,11 +23,12 @@ const Market = () => {
         sections={sections}
         renderSectionHeader={({ section }) => (
           <>
-            <Text styles={styles.sectionHeader}>{section.title}</Text>
+            <Text style={styles.sectionHeader}>{section.title}</Text>
             <FlatList
               horizontal
               data={section.data}
               keyExtractor={(item) => item.id.toString()}
+              showsHorizontalScrollIndicator={false}
               renderItem={({item}) => (
                 <Product data={item} />
               )}
@@ -47,7 +48,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sectionHeader: {
-
+    paddingTop: 5,
+    paddingLeft: 4,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 
 });
