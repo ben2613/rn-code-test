@@ -29,7 +29,7 @@ const Market = () => {
               data={section.data}
               keyExtractor={(item) => item.id.toString()}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) => (
+              renderItem={({ item }) => (
                 <Product data={item} />
               )}
             />
